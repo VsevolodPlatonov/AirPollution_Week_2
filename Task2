@@ -1,0 +1,14 @@
+complete <- function (directory, id=1:332) {
+        file <- list.files (directory, full.names=TRUE)
+        complete <- data.frame()
+        
+        for (i in id){
+                open <- read.csv (file[i])
+                nobs <- sum (complete.cases(open), na.rm = TRUE)
+                forcomplete <- data.frame (i, nobs)
+                complete <- rbind(complete, forcomplete)
+        }
+        
+        colnames (complete) <- c("id", "nobs")
+        complete
+}
